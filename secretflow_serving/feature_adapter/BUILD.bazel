@@ -19,6 +19,7 @@ package(default_visibility = ["//visibility:public"])
 serving_cc_library(
     name = "feature_adapter",
     deps = [
+        ":dp_adapter",
         ":file_adapter",
         ":http_adapter",
         ":mock_adapter",
@@ -99,6 +100,21 @@ serving_cc_library(
     alwayslink = True,
 )
 
+serving_cc_library(
+    name = "dp_adapter",
+    srcs = ["dp_adapter.cc"],
+    hdrs = ["dp_adapter.h"],
+    deps = [
+        ":feature_adapter_factory",
+        "//secretflow_serving/util:arrow_helper",
+        "//secretflow_serving/util:csv_util",
+        "@dataproxy//dataproxy_sdk:sdk",
+        "@com_github_fmtlib_fmt//:fmt",
+        "@com_github_gabime_spdlog//:spdlog",
+    ],
+    alwayslink = True,
+)
+
 serving_cc_test(
     name = "file_adapter_test",
     srcs = ["file_adapter_test.cc"],
@@ -129,6 +145,15 @@ serving_cc_test(
     srcs = ["streaming_adapter_test.cc"],
     deps = [
         ":streaming_adapter",
+        "@brpc//:butil",
+    ],
+)
+
+serving_cc_test(
+    name = "dp_adapter_test",
+    srcs = ["dp_adapter_test.cc"],
+    deps = [
+        ":dp_adapter",
         "@brpc//:butil",
     ],
 )

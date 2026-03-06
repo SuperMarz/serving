@@ -51,7 +51,7 @@ bazel_dep(name = "arrow", version = "14.0.2.bcr.1")
 bazel_dep(name = "openssl", version = "3.3.2.bcr.1")
 bazel_dep(name = "heu", version = "0.6.0.dev20250123")
 bazel_dep(name = "kuscia", version = "0.14.0b0")
-bazel_dep(name = "dataproxy", version = "0.4.0b0")
+bazel_dep(name = "dataproxy_sdk_cc", version = "0.5.0.dev20250603")
 bazel_dep(name = "aws_sdk_cpp")
 single_version_override(
     module_name = "aws_sdk_cpp",

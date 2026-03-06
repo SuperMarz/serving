@@ -27,6 +27,7 @@ message FeatureSourceConfig {
     HttpOptions http_opts = 2;
     CsvOptions csv_opts = 3;
     StreamingOptions streaming_opts = 4;
+    DPOptions dp_opts = 5;
   }
 }
 
@@ -107,4 +108,20 @@ message StreamingOptions {
   // Optional.
   // This determines the size(byte) of each read batch.
   int32 block_size = 12;
+}
+
+// Options for a DataProxy feature source.
+message DPOptions {
+  // DataProxy host address
+  string dm_host = 1;
+
+  // Domain data ID for feature data
+  string domaindata_id = 2;
+
+  // Id column name, associated with FeatureParam::query_datas
+  // Query datas is a subset of id column
+  string id_name = 3;
+
+  // TLS related config.
+  TlsConfig tls_config = 4;
 }
